@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HearthPlay Games — Everyone plays here</title>
   <meta name="description" content="HearthPlay Games makes warm, accessible game apps for everyone. Our first app, HearthRoll, is coming soon." />
+
+  <!-- Favicons & manifest -->
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="icons/icon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="icons/icon-16.png" sizes="16x16" type="image/png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#D4780A" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HearthPlay Games — Everyone plays here" />
+  <meta property="og:description" content="HearthPlay Games makes warm, accessible game apps for everyone. Our first app, HearthRoll, is coming soon." />
+  <meta property="og:image" content="https://hearthplaygames.com/logo-512.png" />
+  <meta property="og:url" content="https://hearthplaygames.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://hearthplaygames.com/logo-512.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
@@ -59,12 +77,21 @@
     }
 
     .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
       font-family: 'Playfair Display', serif;
       font-weight: 900;
       font-size: 1.2rem;
       color: var(--charcoal);
       text-decoration: none;
       letter-spacing: -0.02em;
+    }
+
+    .nav-logo img {
+      width: 32px;
+      height: 32px;
+      display: block;
     }
 
     .nav-logo span { color: var(--amber); }
@@ -539,7 +566,10 @@
 
   <!-- NAV -->
   <nav aria-label="Main navigation">
-    <a href="/" class="nav-logo" aria-label="HearthPlay Games home">Hearth<span>Play</span> Games</a>
+    <a href="/" class="nav-logo" aria-label="HearthPlay Games home">
+      <img src="icons/icon-64.png" alt="" width="32" height="32" />
+      Hearth<span>Play</span> Games
+    </a>
     <a href="#hearthroll" class="nav-link">HearthRoll</a>
   </nav>
 
