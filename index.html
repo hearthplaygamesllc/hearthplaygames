@@ -5,281 +5,323 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HearthPlay Games — Everyone plays here</title>
   <meta name="description" content="HearthPlay Games makes warm, accessible game apps for everyone. Our first app, HearthRoll, is coming soon." />
-
-  <!-- Favicons & manifest -->
-  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
-  <link rel="icon" href="icons/icon-32.png" sizes="32x32" type="image/png" />
-  <link rel="icon" href="icons/icon-16.png" sizes="16x16" type="image/png" />
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
-  <meta name="theme-color" content="#D4780A" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="HearthPlay Games — Everyone plays here" />
-  <meta property="og:description" content="HearthPlay Games makes warm, accessible game apps for everyone. Our first app, HearthRoll, is coming soon." />
-  <meta property="og:image" content="https://hearthplaygames.com/logo-512.png" />
-  <meta property="og:url" content="https://hearthplaygames.com" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://hearthplaygames.com/logo-512.png" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --amber: #D4780A;
-      --amber-light: #F0A030;
-      --amber-glow: rgba(212, 120, 10, 0.15);
-      --brick: #A63D2F;
-      --brick-light: #C9523F;
-      --charcoal: #2E2E2E;
-      --charcoal-soft: #3D3D3D;
-      --cream: #FBF5EC;
-      --cream-dark: #F2E8D6;
-      --warm-white: #FFFDF8;
+      --fire-gold:    #F5A623;
+      --fire-amber:   #D4780A;
+      --fire-red:     #C0392B;
+      --ember:        #E8651A;
+      --stone:        #4A4A52;
+      --stone-dark:   #2A2A30;
+      --stone-deeper: #1A1A1F;
+      --parchment:    #F5EDD8;
+      --parchment-dim:#C9B99A;
+      --cream:        #FBF5E6;
+      --warm-shadow:  rgba(245, 166, 35, 0.12);
+      --glow-strong:  rgba(245, 166, 35, 0.25);
+      --glow-subtle:  rgba(212, 120, 10, 0.08);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Source Serif 4', Georgia, serif;
-      background-color: var(--cream);
-      color: var(--charcoal);
+      font-family: 'Crimson Pro', Georgia, serif;
+      background-color: var(--stone-deeper);
+      color: var(--parchment);
       overflow-x: hidden;
       min-height: 100vh;
     }
 
-    /* ── Grain texture overlay ── */
-    body::before {
+    body::after {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 1000;
-      opacity: 0.6;
+      z-index: 999;
+      opacity: 0.7;
     }
 
     /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.25rem 2.5rem;
+      z-index: 200;
+      padding: 1.1rem 3rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(251,245,236,0.95) 0%, rgba(251,245,236,0) 100%);
+      background: linear-gradient(to bottom, rgba(26,26,31,0.97) 0%, rgba(26,26,31,0) 100%);
+      backdrop-filter: blur(2px);
     }
 
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: 1.2rem;
-      color: var(--charcoal);
+      gap: 0.7rem;
       text-decoration: none;
-      letter-spacing: -0.02em;
     }
 
     .nav-logo img {
-      width: 32px;
-      height: 32px;
-      display: block;
+      height: 42px;
+      width: 42px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(245,166,35,0.5));
+      transition: filter 0.3s;
     }
 
-    .nav-logo span { color: var(--amber); }
+    .nav-logo:hover img { filter: drop-shadow(0 0 14px rgba(245,166,35,0.8)); }
 
-    nav a.nav-link {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: var(--charcoal-soft);
-      text-decoration: none;
-      letter-spacing: 0.08em;
+    .nav-logo-text {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--parchment);
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+    }
+
+    .nav-logo-text span {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      color: var(--fire-gold);
       text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--parchment-dim);
+      text-decoration: none;
       transition: color 0.2s;
     }
-    nav a.nav-link:hover { color: var(--amber); }
+    .nav-links a:hover { color: var(--fire-gold); }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      padding: 0 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 4rem;
       position: relative;
       overflow: hidden;
     }
 
-    /* Large decorative background dice */
-    .hero-bg-dice {
+    .hero::before {
+      content: '';
       position: absolute;
-      font-size: clamp(180px, 30vw, 380px);
-      right: -2vw;
-      top: 50%;
-      transform: translateY(-52%) rotate(18deg);
-      opacity: 0.055;
-      line-height: 1;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 30%, rgba(245,166,35,0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(212,120,10,0.08) 0%, transparent 60%),
+        linear-gradient(180deg, var(--stone-deeper) 0%, #1E1A16 50%, var(--stone-deeper) 100%);
       pointer-events: none;
-      animation: floatDice 8s ease-in-out infinite;
-      user-select: none;
     }
 
-    @keyframes floatDice {
-      0%, 100% { transform: translateY(-52%) rotate(18deg); }
-      50% { transform: translateY(-55%) rotate(22deg); }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at 50% 100%, rgba(232,101,26,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      animation: flicker 4s ease-in-out infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; transform: translateX(-50%) scaleX(1); }
+      33%       { opacity: 0.85; transform: translateX(-50%) scaleX(1.04); }
+      66%       { opacity: 0.95; transform: translateX(-50%) scaleX(0.97); }
     }
 
     .hero-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 7rem;
-      padding-bottom: 3rem;
-      max-width: 680px;
-      animation: fadeUp 1s ease both;
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      animation: fadeUp 1.2s ease both;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
+      from { opacity: 0; transform: translateY(32px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.78rem;
-      font-weight: 300;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--brick);
-      margin-bottom: 1.4rem;
-      animation: fadeUp 1s 0.1s ease both;
+    .hero-logo {
+      width: clamp(160px, 28vw, 260px);
+      height: auto;
+      margin: 0 auto 2rem;
+      display: block;
+      filter: drop-shadow(0 0 40px rgba(245,166,35,0.45)) drop-shadow(0 0 80px rgba(232,101,26,0.2));
+      animation: fadeUp 1.2s 0.1s ease both, logoGlow 5s ease-in-out infinite 1.3s;
     }
 
-    .eyebrow::before {
-      content: '';
-      display: block;
-      width: 2rem;
-      height: 1.5px;
-      background: var(--brick);
+    @keyframes logoGlow {
+      0%, 100% { filter: drop-shadow(0 0 40px rgba(245,166,35,0.45)) drop-shadow(0 0 80px rgba(232,101,26,0.2)); }
+      50%       { filter: drop-shadow(0 0 55px rgba(245,166,35,0.6)) drop-shadow(0 0 100px rgba(232,101,26,0.3)); }
+    }
+
+    .hero-studio-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+      font-weight: 400;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--fire-gold);
+      margin-bottom: 1.2rem;
+      animation: fadeUp 1.2s 0.2s ease both;
     }
 
     h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
       font-weight: 900;
-      line-height: 1.06;
-      letter-spacing: -0.03em;
-      color: var(--charcoal);
-      margin-bottom: 0.25em;
-      animation: fadeUp 1s 0.2s ease both;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--parchment);
+      text-shadow: 0 0 60px rgba(245,166,35,0.3), 0 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 0.5em;
+      animation: fadeUp 1.2s 0.3s ease both;
     }
 
-    h1 em {
-      font-style: italic;
-      color: var(--amber);
-    }
+    h1 em { font-style: italic; color: var(--fire-gold); text-shadow: 0 0 40px rgba(245,166,35,0.6); }
 
     .tagline {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.1rem, 2.5vw, 1.55rem);
-      font-weight: 400;
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(1.2rem, 2.8vw, 1.7rem);
+      font-weight: 300;
       font-style: italic;
-      color: var(--charcoal-soft);
-      margin-top: 0.6em;
-      margin-bottom: 2rem;
-      letter-spacing: -0.01em;
-      animation: fadeUp 1s 0.3s ease both;
+      color: var(--parchment-dim);
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.02em;
+      animation: fadeUp 1.2s 0.4s ease both;
     }
 
     .hero-body {
-      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
       font-weight: 300;
-      line-height: 1.75;
-      color: var(--charcoal-soft);
-      max-width: 520px;
-      margin-bottom: 2.5rem;
-      animation: fadeUp 1s 0.4s ease both;
+      line-height: 1.8;
+      color: rgba(197,181,154,0.85);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      animation: fadeUp 1.2s 0.5s ease both;
     }
 
-    /* ── CTA ── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--fire-amber);
+      opacity: 0.5;
+      margin: 0.5rem 0 2rem;
+      animation: fadeUp 1.2s 0.55s ease both;
+    }
+
+    .ornament::before, .ornament::after {
+      content: '';
+      width: 80px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--fire-amber));
+    }
+    .ornament::after { transform: scaleX(-1); }
+
     .cta-group {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      justify-content: center;
+      gap: 1.8rem;
       flex-wrap: wrap;
-      animation: fadeUp 1s 0.5s ease both;
+      animation: fadeUp 1.2s 0.6s ease both;
     }
 
     .btn-primary {
       display: inline-block;
-      background: var(--amber);
-      color: var(--warm-white);
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--stone-deeper);
+      background: linear-gradient(135deg, var(--fire-gold) 0%, var(--fire-amber) 100%);
       text-decoration: none;
-      font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
-      font-style: italic;
-      padding: 0.85rem 2rem;
-      border-radius: 3px;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(212,120,10,0.3);
+      padding: 0.9rem 2.2rem;
+      border-radius: 2px;
+      box-shadow: 0 4px 24px rgba(245,166,35,0.4), 0 0 0 1px rgba(245,166,35,0.3);
+      transition: box-shadow 0.25s, transform 0.2s;
     }
 
     .btn-primary:hover {
-      background: var(--amber-light);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(212,120,10,0.4);
+      box-shadow: 0 8px 36px rgba(245,166,35,0.55), 0 0 0 1px rgba(245,166,35,0.5);
     }
 
-    .btn-secondary {
-      font-size: 0.85rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
+    .btn-ghost {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--charcoal-soft);
+      color: var(--parchment-dim);
       text-decoration: none;
-      border-bottom: 1px solid var(--charcoal-soft);
+      border-bottom: 1px solid rgba(197,181,154,0.3);
       padding-bottom: 2px;
       transition: color 0.2s, border-color 0.2s;
     }
-    .btn-secondary:hover { color: var(--brick); border-color: var(--brick); }
+    .btn-ghost:hover { color: var(--fire-gold); border-color: var(--fire-gold); }
 
-    /* ── DIVIDER ── */
-    .hero-divider {
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 1.2rem;
-      padding-bottom: 2.5rem;
-      opacity: 0.45;
-      animation: fadeUp 1s 0.6s ease both;
-    }
-
-    .hero-divider::before, .hero-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--charcoal);
-    }
-
-    .hero-divider span {
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
+      gap: 0.4rem;
+      color: rgba(197,181,154,0.35);
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      white-space: nowrap;
+      animation: fadeUp 1.2s 1s ease both;
     }
 
-    /* ── FEATURED APP ── */
+    .scroll-hint::after {
+      content: '';
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(197,181,154,0.35), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 0.5; }
+      50%       { transform: scaleY(1.2); opacity: 1; }
+    }
+
+    /* ── APP SECTION ── */
     .app-section {
-      background: var(--charcoal);
-      padding: 5rem 2.5rem;
+      background: linear-gradient(180deg, var(--stone-deeper) 0%, #1C1712 40%, #1C1712 60%, var(--stone-deeper) 100%);
+      padding: 6rem 2.5rem;
       position: relative;
       overflow: hidden;
     }
@@ -287,394 +329,518 @@
     .app-section::before {
       content: '';
       position: absolute;
-      top: -80px; right: -80px;
-      width: 320px; height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,120,10,0.18) 0%, transparent 70%);
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(245,166,35,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 50% at 10% 30%, rgba(232,101,26,0.05) 0%, transparent 50%);
       pointer-events: none;
     }
 
-    .app-inner {
-      max-width: 900px;
-      margin: 0 auto;
+    .app-section::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--fire-amber), var(--fire-gold), var(--fire-amber), transparent);
+      opacity: 0.4;
+    }
+
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--fire-gold);
+      margin-bottom: 3.5rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: '';
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--fire-amber));
+    }
+    .section-eyebrow::after { transform: scaleX(-1); }
+
+    .app-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 5rem;
       align-items: center;
-    }
-
-    .app-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.72rem;
-      font-weight: 300;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 1.2rem;
-    }
-
-    .app-label::before {
-      content: '';
-      display: block;
-      width: 1.5rem;
-      height: 1px;
-      background: var(--amber);
     }
 
     h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
       font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--cream);
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      color: var(--parchment);
+      text-shadow: 0 0 40px rgba(245,166,35,0.2);
       margin-bottom: 1rem;
     }
 
-    h2 em { color: var(--amber); font-style: italic; }
+    h2 em { color: var(--fire-gold); font-style: italic; }
 
     .app-desc {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 300;
-      line-height: 1.75;
-      color: rgba(251,245,236,0.7);
+      line-height: 1.8;
+      color: rgba(197,181,154,0.8);
       margin-bottom: 2rem;
     }
 
-    .coming-soon-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(212,120,10,0.15);
-      border: 1px solid rgba(212,120,10,0.35);
-      color: var(--amber-light);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.45rem 1rem;
-      border-radius: 100px;
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 2.2rem;
     }
 
-    .coming-soon-badge::before {
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--parchment-dim);
+    }
+
+    .feature-list li::before {
+      content: '◆';
+      color: var(--fire-gold);
+      font-size: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    .badge-coming {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(245,166,35,0.1);
+      border: 1px solid rgba(245,166,35,0.3);
+      color: var(--fire-gold);
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.2rem;
+      border-radius: 1px;
+    }
+
+    .badge-coming::before {
       content: '';
-      display: block;
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--amber-light);
+      background: var(--fire-gold);
       animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
     }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
+      50%       { opacity: 0.6; transform: scale(0.85); }
     }
 
-    /* Dice face card */
-    .dice-showcase {
+    .dice-display {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      align-items: flex-end;
+      align-items: center;
+      position: relative;
     }
 
-    .dice-row {
-      display: flex;
-      gap: 0.75rem;
+    .dice-display::before {
+      content: '';
+      position: absolute;
+      inset: -2rem;
+      background: radial-gradient(ellipse at center, rgba(245,166,35,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .die-card {
-      width: 72px; height: 72px;
-      background: var(--charcoal-soft);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
+    .dice-row { display: flex; gap: 1rem; }
+
+    .die {
+      width: 80px; height: 80px;
+      background: linear-gradient(145deg, var(--stone) 0%, var(--stone-dark) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2px;
-      transition: transform 0.25s, border-color 0.25s;
+      gap: 4px;
       cursor: default;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
-    .die-card:hover {
-      transform: translateY(-4px) rotate(-3deg);
-      border-color: rgba(212,120,10,0.5);
+    .die:hover {
+      transform: translateY(-6px) rotate(-5deg);
+      border-color: rgba(245,166,35,0.4);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5), 0 0 20px rgba(245,166,35,0.15), inset 0 1px 0 rgba(255,255,255,0.06);
     }
 
-    .die-card .die-emoji { font-size: 1.8rem; line-height: 1; }
-    .die-card .die-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(251,245,236,0.4);
+    .die-face { font-size: 2rem; line-height: 1; }
+    .die-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: rgba(197,181,154,0.45);
     }
 
-    .die-card.featured {
-      width: 88px; height: 88px;
-      background: var(--amber);
-      border-color: var(--amber-light);
+    .die.hero-die {
+      width: 96px; height: 96px;
+      background: linear-gradient(145deg, #8B3A1A 0%, #5C1F0D 100%);
+      border-color: rgba(245,166,35,0.4);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 30px rgba(245,166,35,0.2), inset 0 1px 0 rgba(245,166,35,0.15);
     }
 
-    .die-card.featured .die-label { color: rgba(255,255,255,0.65); }
+    .die.hero-die .die-name { color: rgba(245,166,35,0.65); }
 
     /* ── VALUES ── */
     .values-section {
-      padding: 5rem 2.5rem;
-      max-width: 900px;
-      margin: 0 auto;
+      padding: 5.5rem 2.5rem;
+      position: relative;
     }
 
-    .section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--brick);
-      margin-bottom: 3rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .section-label::after {
+    .values-section::before {
       content: '';
-      flex: 1;
+      position: absolute;
+      top: 0; left: 0; right: 0;
       height: 1px;
-      background: var(--cream-dark);
+      background: linear-gradient(90deg, transparent, rgba(245,166,35,0.2), transparent);
     }
 
     .values-grid {
+      max-width: 1000px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     .value-card {
-      padding: 2rem;
-      background: var(--warm-white);
-      border: 1px solid var(--cream-dark);
-      border-radius: 4px;
-      transition: box-shadow 0.2s, transform 0.2s;
+      background: linear-gradient(160deg, rgba(74,74,82,0.3) 0%, rgba(42,42,48,0.5) 100%);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 3px;
+      padding: 2.2rem 1.8rem;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .value-card:hover {
-      box-shadow: 0 12px 40px rgba(0,0,0,0.07);
-      transform: translateY(-3px);
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--fire-amber), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
-    .value-icon {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
+    .value-card:hover { border-color: rgba(245,166,35,0.2); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 30px rgba(245,166,35,0.05); }
+    .value-card:hover::before { opacity: 1; }
 
+    .value-icon { font-size: 2rem; display: block; margin-bottom: 1.1rem; }
     .value-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--charcoal);
-      margin-bottom: 0.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--parchment);
+      margin-bottom: 0.7rem;
     }
 
     .value-desc {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 300;
+      line-height: 1.75;
+      color: rgba(197,181,154,0.7);
+    }
+
+    /* ── NOTIFY ── */
+    .notify-section {
+      padding: 5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(180deg, transparent 0%, rgba(245,166,35,0.04) 50%, transparent 100%);
+    }
+
+    .notify-inner { max-width: 520px; margin: 0 auto; }
+
+    .notify-section h3 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+      color: var(--parchment);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .notify-section p {
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--parchment-dim);
+      margin-bottom: 2rem;
       line-height: 1.7;
-      color: var(--charcoal-soft);
+    }
+
+    .notify-form {
+      display: flex;
+      max-width: 420px;
+      margin: 0 auto;
+      border: 1px solid rgba(245,166,35,0.3);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(245,166,35,0.08);
+    }
+
+    .notify-form input {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      background: rgba(255,255,255,0.04);
+      border: none;
+      outline: none;
+      font-family: 'Crimson Pro', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--parchment);
+      min-width: 0;
+    }
+
+    .notify-form input::placeholder { color: rgba(197,181,154,0.4); }
+
+    .notify-form button {
+      padding: 0.9rem 1.4rem;
+      background: var(--fire-amber);
+      border: none;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--stone-deeper);
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .notify-form button:hover { background: var(--fire-gold); }
+
+    .notify-disclaimer {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(197,181,154,0.35);
+      margin-top: 1rem;
+      font-style: normal !important;
+      margin-bottom: 0 !important;
     }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--charcoal);
-      color: rgba(251,245,236,0.5);
-      padding: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 2.5rem 3rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: gap;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: var(--stone-deeper);
     }
 
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: 1rem;
-      color: var(--cream);
-      letter-spacing: -0.02em;
+    .footer-brand { display: flex; align-items: center; gap: 0.8rem; }
+
+    .footer-brand img {
+      height: 36px; width: 36px;
+      object-fit: contain;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 6px rgba(245,166,35,0.3));
     }
 
-    .footer-logo span { color: var(--amber); }
+    .footer-brand-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--parchment-dim);
+      letter-spacing: 0.05em;
+    }
 
     .footer-tagline {
-      font-style: italic;
-      font-size: 0.85rem;
-      margin-top: 0.2rem;
-      color: rgba(251,245,236,0.4);
-    }
-
-    footer nav {
-      position: static;
-      padding: 0;
-      background: none;
-      gap: 1.5rem;
-    }
-
-    footer nav a {
+      font-family: 'Crimson Pro', serif;
       font-size: 0.8rem;
-      letter-spacing: 0.1em;
+      font-style: italic;
+      color: rgba(197,181,154,0.35);
+      margin-top: 0.15rem;
+    }
+
+    .footer-links { display: flex; gap: 2rem; }
+
+    .footer-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(251,245,236,0.45);
+      color: rgba(197,181,154,0.4);
       text-decoration: none;
       transition: color 0.2s;
     }
-    footer nav a:hover { color: var(--amber); }
+    .footer-links a:hover { color: var(--fire-gold); }
 
     .footer-copy {
-      font-size: 0.75rem;
-      margin-top: 0.3rem;
-      color: rgba(251,245,236,0.25);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(197,181,154,0.25);
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 700px) {
-      nav { padding: 1rem 1.25rem; }
-      .hero { padding: 0 1.25rem; }
-      .hero-bg-dice { font-size: 160px; right: -20px; opacity: 0.04; }
-      .app-section { padding: 3.5rem 1.25rem; }
-      .app-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .dice-showcase { align-items: flex-start; }
-      .values-section { padding: 3.5rem 1.25rem; }
-      .values-grid { grid-template-columns: 1fr; gap: 1rem; }
-      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
-      footer nav { flex-wrap: wrap; justify-content: center; }
+    @media (max-width: 720px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.65rem; }
+      .app-section { padding: 4rem 1.5rem; }
+      .app-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .dice-display { order: -1; }
+      .values-section { padding: 4rem 1.5rem; }
+      .values-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+      .notify-form { flex-direction: column; }
+      .notify-form button { width: 100%; }
     }
 
-    /* ── ACCESSIBILITY ── */
-    :focus-visible {
-      outline: 2px solid var(--amber);
-      outline-offset: 3px;
-    }
+    :focus-visible { outline: 2px solid var(--fire-gold); outline-offset: 3px; border-radius: 2px; }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav aria-label="Main navigation">
     <a href="/" class="nav-logo" aria-label="HearthPlay Games home">
-      <img src="icons/icon-64.png" alt="" width="32" height="32" />
-      Hearth<span>Play</span> Games
+      <img src="images/logo-1024.png" alt="HearthPlay Games logo" />
+      <div class="nav-logo-text">
+        HearthPlay Games
+        <span>Everyone plays here</span>
+      </div>
     </a>
-    <a href="#hearthroll" class="nav-link">HearthRoll</a>
+    <div class="nav-links">
+      <a href="#hearthroll">HearthRoll</a>
+      <a href="#notify">Stay Updated</a>
+      <a href="mailto:hello@hearthplaygames.com">Contact</a>
+    </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero" aria-labelledby="hero-heading">
-    <div aria-hidden="true" class="hero-bg-dice">🎲</div>
-
     <div class="hero-content">
-      <p class="eyebrow" aria-hidden="true">HearthPlay Games</p>
-      <h1 id="hero-heading">
-        Games made<br />for <em>everyone.</em>
-      </h1>
+      <img src="images/logo-1024.png" alt="HearthPlay Games" class="hero-logo" width="260" height="260" />
+      <p class="hero-studio-name" aria-hidden="true">HearthPlay Games</p>
+      <h1 id="hero-heading">The hearth is<br />open to <em>all.</em></h1>
       <p class="tagline">Everyone plays here.</p>
+      <div class="ornament" aria-hidden="true">🔥</div>
       <p class="hero-body">
-        We make warm, accessible game apps that welcome every kind of player. Because the table should have room for all of us.
+        We craft warm, accessible game apps where every player feels at home. No barriers. No fine print. Just the joy of play — for everyone at the table.
       </p>
       <div class="cta-group">
-        <a href="#hearthroll" class="btn-primary">See HearthRoll →</a>
-        <a href="mailto:hello@hearthplaygames.com" class="btn-secondary">Get in touch</a>
+        <a href="#hearthroll" class="btn-primary">See HearthRoll</a>
+        <a href="#notify" class="btn-ghost">Get notified at launch</a>
       </div>
     </div>
-
-    <div class="hero-divider" aria-hidden="true">
-      <span>Our first app</span>
-    </div>
+    <p class="scroll-hint" aria-hidden="true">Scroll</p>
   </section>
 
-  <!-- APP SECTION -->
   <section class="app-section" id="hearthroll" aria-labelledby="app-heading">
-    <div class="app-inner">
-      <div>
-        <p class="app-label" aria-hidden="true">Coming soon</p>
-        <h2 id="app-heading">Hearth<em>Roll</em></h2>
-        <p class="app-desc">
-          A beautiful, accessible dice roller for D4 through D20. Whether you're at the table or on the go, HearthRoll puts the perfect roll in your hands — for every player, every game.
-        </p>
-        <span class="coming-soon-badge" role="status">Launching on iOS &amp; Android</span>
-      </div>
-
-      <div class="dice-showcase" aria-label="Dice supported: D4, D6, D8, D10, D12, D20">
-        <div class="dice-row">
-          <div class="die-card" aria-label="D4 die">
-            <span class="die-emoji" aria-hidden="true">🔺</span>
-            <span class="die-label">D4</span>
-          </div>
-          <div class="die-card" aria-label="D6 die">
-            <span class="die-emoji" aria-hidden="true">⬡</span>
-            <span class="die-label">D6</span>
-          </div>
-          <div class="die-card" aria-label="D8 die">
-            <span class="die-emoji" aria-hidden="true">💎</span>
-            <span class="die-label">D8</span>
-          </div>
+    <div class="section-inner">
+      <p class="section-eyebrow" aria-hidden="true">Our First App</p>
+      <div class="app-grid">
+        <div>
+          <h2 id="app-heading">Hearth<em>Roll</em></h2>
+          <p class="app-desc">A beautiful, cozy dice roller for every adventurer — from D4 to D20. Built for the table, built for everyone.</p>
+          <ul class="feature-list" aria-label="HearthRoll features">
+            <li>Full dice set — D4, D6, D8, D10, D12 &amp; D20</li>
+            <li>Multiple themes to match your adventure</li>
+            <li>Local multiplayer with player names</li>
+            <li>Accessible by design, not as an afterthought</li>
+            <li>Roll history &amp; saved presets (premium)</li>
+          </ul>
+          <span class="badge-coming" role="status">Coming to iOS &amp; Android</span>
         </div>
-        <div class="dice-row">
-          <div class="die-card" aria-label="D10 die">
-            <span class="die-emoji" aria-hidden="true">🔟</span>
-            <span class="die-label">D10</span>
+        <div class="dice-display" aria-label="Dice types supported: D4, D6, D8, D10, D12, D20">
+          <div class="dice-row">
+            <div class="die" aria-label="D4"><span class="die-face" aria-hidden="true">🔺</span><span class="die-name">D4</span></div>
+            <div class="die" aria-label="D6"><span class="die-face" aria-hidden="true">⬡</span><span class="die-name">D6</span></div>
+            <div class="die" aria-label="D8"><span class="die-face" aria-hidden="true">💎</span><span class="die-name">D8</span></div>
           </div>
-          <div class="die-card" aria-label="D12 die">
-            <span class="die-emoji" aria-hidden="true">🔮</span>
-            <span class="die-label">D12</span>
-          </div>
-          <div class="die-card featured" aria-label="D20 die">
-            <span class="die-emoji" aria-hidden="true">🎲</span>
-            <span class="die-label">D20</span>
+          <div class="dice-row">
+            <div class="die" aria-label="D10"><span class="die-face" aria-hidden="true">🔟</span><span class="die-name">D10</span></div>
+            <div class="die" aria-label="D12"><span class="die-face" aria-hidden="true">🔮</span><span class="die-name">D12</span></div>
+            <div class="die hero-die" aria-label="D20 flagship die"><span class="die-face" aria-hidden="true">🎲</span><span class="die-name">D20</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VALUES -->
   <section class="values-section" aria-labelledby="values-heading">
-    <p class="section-label" id="values-heading">What we stand for</p>
+    <p class="section-eyebrow" id="values-heading" style="margin-bottom:3rem;">What We Stand For</p>
     <div class="values-grid">
       <div class="value-card">
         <span class="value-icon" aria-hidden="true">♿</span>
-        <p class="value-title">Accessibility first</p>
-        <p class="value-desc">Every design decision starts with the question: does this work for everyone? Accessibility isn't a feature — it's the foundation.</p>
+        <p class="value-title">Accessibility First</p>
+        <p class="value-desc">Every decision starts here. Accessibility isn't a checkbox — it's the foundation every HearthPlay game is built on.</p>
       </div>
       <div class="value-card">
         <span class="value-icon" aria-hidden="true">🔥</span>
-        <p class="value-title">Warmth in every pixel</p>
-        <p class="value-desc">Games should feel like gathering around a fire, not staring at a screen. We design for comfort, delight, and that feeling of being welcome.</p>
+        <p class="value-title">Warmth in Every Pixel</p>
+        <p class="value-desc">Games should feel like gathering around a fire. We design for comfort, delight, and the feeling of being genuinely welcome.</p>
       </div>
       <div class="value-card">
-        <span class="value-icon" aria-hidden="true">🎮</span>
-        <p class="value-title">Simple &amp; joyful</p>
-        <p class="value-desc">No friction, no learning curves. Just games that get out of the way and let you play — the way it should be.</p>
+        <span class="value-icon" aria-hidden="true">🎲</span>
+        <p class="value-title">Simple &amp; Joyful</p>
+        <p class="value-desc">No friction, no learning curves. Just beautiful games that get out of the way and let you play — the way it was always meant to be.</p>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div>
-      <p class="footer-logo">Hearth<span>Play</span> Games</p>
-      <p class="footer-tagline">Everyone plays here.</p>
-      <p class="footer-copy">&copy; 2026 HearthPlay Games LLC. All rights reserved.</p>
+  <section class="notify-section" id="notify" aria-labelledby="notify-heading">
+    <div class="notify-inner">
+      <h3 id="notify-heading">Be first to the hearth.</h3>
+      <p>HearthRoll is coming soon to iOS and Android. Drop your email and we'll let you know the moment the fire is lit.</p>
+      <form class="notify-form" action="mailto:hello@hearthplaygames.com" method="get" aria-label="Launch notification signup">
+        <input type="email" name="subject" placeholder="your@email.com" aria-label="Your email address" autocomplete="email" required />
+        <button type="submit">Notify Me</button>
+      </form>
+      <p class="notify-disclaimer">No spam. Just a single message when HearthRoll launches.</p>
     </div>
-    <nav aria-label="Footer navigation">
-      <a href="mailto:hello@hearthplaygames.com">Contact</a>
+  </section>
+
+  <footer>
+    <div class="footer-brand">
+      <img src="images/logo-1024.png" alt="HearthPlay Games logo" />
+      <div>
+        <p class="footer-brand-text">HearthPlay Games LLC</p>
+        <p class="footer-tagline">Everyone plays here.</p>
+      </div>
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
       <a href="#hearthroll">HearthRoll</a>
+      <a href="#notify">Stay Updated</a>
+      <a href="mailto:hello@hearthplaygames.com">Contact</a>
     </nav>
+    <p class="footer-copy">&copy; 2026 HearthPlay Games LLC. All rights reserved.</p>
   </footer>
 
 </body>
