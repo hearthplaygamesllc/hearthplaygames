@@ -22,7 +22,7 @@
       --stone-deeper: #1A1A1F;
       --parchment:    #F5EDD8;
       --parchment-dim:#C9B99A;
-      --cream:        #FBF5E6;
+      --cream:        #fefbec;
       --warm-shadow:  rgba(245, 166, 35, 0.12);
       --glow-strong:  rgba(245, 166, 35, 0.25);
       --glow-subtle:  rgba(212, 120, 10, 0.08);
@@ -173,32 +173,43 @@
       margin: 0 auto 2rem;
       position: relative;
       animation: fadeUp 1.2s 0.1s ease both;
-      /* Cream rectangle that fades left and right into the dark background */
       background: linear-gradient(to right,
         transparent 0%,
-        #FBF5E6 33%,
-        #FBF5E6 67%,
+        #fefbec calc(50% - var(--logo-half, 110px)),
+        #fefbec calc(50% + var(--logo-half, 110px)),
         transparent 100%
       );
     }
 
-    /* Amber line top — sharp full width */
+    /* Amber line top — sharp, aligned to logo edges */
     .hero-logo-banner::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(to right, transparent, var(--fire-amber) 33%, var(--fire-gold) 50%, var(--fire-amber) 67%, transparent);
+      background: linear-gradient(to right,
+        transparent 0%,
+        var(--fire-amber) calc(50% - var(--logo-half, 110px)),
+        var(--fire-gold) 50%,
+        var(--fire-amber) calc(50% + var(--logo-half, 110px)),
+        transparent 100%
+      );
       z-index: 2;
     }
 
-    /* Amber line bottom — sharp full width */
+    /* Amber line bottom — sharp, aligned to logo edges */
     .hero-logo-banner::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(to right, transparent, var(--fire-amber) 33%, var(--fire-gold) 50%, var(--fire-amber) 67%, transparent);
+      background: linear-gradient(to right,
+        transparent 0%,
+        var(--fire-amber) calc(50% - var(--logo-half, 110px)),
+        var(--fire-gold) 50%,
+        var(--fire-amber) calc(50% + var(--logo-half, 110px)),
+        transparent 100%
+      );
       z-index: 2;
     }
 
@@ -878,4 +889,28 @@
     <nav class="footer-links" aria-label="Footer navigation">
       <a href="#hearthroll">HearthRoll</a>
       <a href="#notify">Stay Updated</a>
-      <a href="/cdn-cgi/l/email-protection#b6ded3dadad9f6ded3d7c4c2dec6dad7cfd1d7dbd3c598d5
+      <a href="/cdn-cgi/l/email-protection#b6ded3dadad9f6ded3d7c4c2dec6dad7cfd1d7dbd3c598d5 Contact Us</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 HearthPlay Games LLC. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function updateLogoBannerWidth() {
+      const logo = document.querySelector('.hero-logo');
+      const banner = document.querySelector('.hero-logo-banner');
+      if (!logo || !banner) return;
+      const half = logo.getBoundingClientRect().width / 2;
+      banner.style.setProperty('--logo-half', half + 'px');
+    }
+
+    const logo = document.querySelector('.hero-logo');
+    if (logo && logo.complete) {
+      updateLogoBannerWidth();
+    } else if (logo) {
+      logo.addEventListener('load', updateLogoBannerWidth);
+    }
+    window.addEventListener('resize', updateLogoBannerWidth);
+  </script>
+
+</body>
+</html>
