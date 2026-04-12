@@ -173,28 +173,32 @@
       margin: 0 auto 2rem;
       position: relative;
       animation: fadeUp 1.2s 0.1s ease both;
-      /* Sharp top and bottom, fade left and right */
-      mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
+      /* Cream rectangle that fades left and right into the dark background */
+      background: linear-gradient(to right,
+        transparent 0%,
+        #FBF5E6 18%,
+        #FBF5E6 82%,
+        transparent 100%
+      );
     }
 
-    /* Amber line top */
+    /* Amber line top — sharp full width */
     .hero-logo-banner::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(to right, transparent, var(--fire-amber) 20%, var(--fire-gold) 50%, var(--fire-amber) 80%, transparent);
+      background: linear-gradient(to right, transparent, var(--fire-amber) 18%, var(--fire-gold) 50%, var(--fire-amber) 82%, transparent);
       z-index: 2;
     }
 
-    /* Amber line bottom */
+    /* Amber line bottom — sharp full width */
     .hero-logo-banner::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(to right, transparent, var(--fire-amber) 20%, var(--fire-gold) 50%, var(--fire-amber) 80%, transparent);
+      background: linear-gradient(to right, transparent, var(--fire-amber) 18%, var(--fire-gold) 50%, var(--fire-amber) 82%, transparent);
       z-index: 2;
     }
 
@@ -204,13 +208,15 @@
       display: block;
       margin: 0 auto;
       padding: 1.2rem 0;
-      filter: drop-shadow(0 0 40px rgba(245,166,35,0.45)) drop-shadow(0 0 80px rgba(232,101,26,0.2));
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 20px rgba(245,166,35,0.3));
       animation: logoGlow 5s ease-in-out infinite 1.3s;
     }
 
     @keyframes logoGlow {
-      0%, 100% { filter: drop-shadow(0 0 40px rgba(245,166,35,0.45)) drop-shadow(0 0 80px rgba(232,101,26,0.2)); }
-      50%       { filter: drop-shadow(0 0 55px rgba(245,166,35,0.6)) drop-shadow(0 0 100px rgba(232,101,26,0.3)); }
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(245,166,35,0.3)); }
+      50%       { filter: drop-shadow(0 0 32px rgba(245,166,35,0.5)); }
     }
 
     .hero-studio-name {
