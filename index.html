@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HearthPlay Games — Everyone plays here</title>
   <meta name="description" content="HearthPlay Games makes warm, accessible game apps for everyone. Our first app, HearthRoll, is coming soon." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
 
@@ -556,6 +557,25 @@
 
     .die.hero-die .die-name { color: rgba(245,166,35,0.65); }
 
+    .hearthroll-logo {
+      width: clamp(200px, 35vw, 320px);
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 0 30px rgba(245,166,35,0.5)) drop-shadow(0 0 60px rgba(232,101,26,0.25));
+      animation: hearthrollGlow 5s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .hearthroll-logo:hover {
+      transform: translateY(-6px) rotate(-2deg);
+    }
+
+    @keyframes hearthrollGlow {
+      0%, 100% { filter: drop-shadow(0 0 30px rgba(245,166,35,0.5)) drop-shadow(0 0 60px rgba(232,101,26,0.25)); }
+      50%       { filter: drop-shadow(0 0 45px rgba(245,166,35,0.7)) drop-shadow(0 0 90px rgba(232,101,26,0.4)); }
+    }
+
     /* ── APP BUTTONS ── */
     .app-buttons {
       display: flex;
@@ -910,17 +930,12 @@
             </span>
           </div>
         </div>
-        <div class="dice-display" aria-label="Dice types supported: D4, D6, D8, D10, D12, D20">
-          <div class="dice-row">
-            <div class="die" aria-label="D4"><span class="die-face" aria-hidden="true">🔺</span><span class="die-name">D4</span></div>
-            <div class="die" aria-label="D6"><span class="die-face" aria-hidden="true">⬡</span><span class="die-name">D6</span></div>
-            <div class="die" aria-label="D8"><span class="die-face" aria-hidden="true">💎</span><span class="die-name">D8</span></div>
-          </div>
-          <div class="dice-row">
-            <div class="die" aria-label="D10"><span class="die-face" aria-hidden="true">🔟</span><span class="die-name">D10</span></div>
-            <div class="die" aria-label="D12"><span class="die-face" aria-hidden="true">🔮</span><span class="die-name">D12</span></div>
-            <div class="die hero-die" aria-label="D20 flagship die"><span class="die-face" aria-hidden="true">🎲</span><span class="die-name">D20</span></div>
-          </div>
+        <div class="dice-display" aria-label="HearthRoll — D20 dice rolling app">
+          <img
+            src="images/d20-hearthroll.png"
+            alt="HearthRoll D20 logo with hearthfire"
+            class="hearthroll-logo"
+          />
         </div>
       </div>
     </div>
