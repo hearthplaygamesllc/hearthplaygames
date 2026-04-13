@@ -556,6 +556,65 @@
 
     .die.hero-die .die-name { color: rgba(245,166,35,0.65); }
 
+    /* ── APP BUTTONS ── */
+    .app-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .app-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(245,166,35,0.4);
+      background: rgba(245,166,35,0.08);
+      text-decoration: none;
+      color: var(--parchment);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      min-width: 130px;
+    }
+
+    .app-btn:not(.app-btn--disabled):hover {
+      background: rgba(245,166,35,0.18);
+      border-color: rgba(245,166,35,0.7);
+      transform: translateY(-2px);
+    }
+
+    .app-btn--disabled {
+      border-color: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: rgba(197,181,154,0.35);
+      cursor: not-allowed;
+      filter: grayscale(1);
+    }
+
+    .app-btn-icon { font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
+
+    .app-btn-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .app-btn-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .app-btn-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
     /* ── VALUES ── */
     .values-section {
       padding: 5.5rem 2.5rem;
@@ -815,7 +874,7 @@
 
   <section class="app-section" id="hearthroll" aria-labelledby="app-heading">
     <div class="section-inner">
-      <p class="section-eyebrow" aria-hidden="true">Our First App</p>
+      <p class="section-eyebrow" aria-hidden="true">Dice Rolling Game for Everyone</p>
       <div class="app-grid">
         <div>
           <h2 id="app-heading">Hearth<em>Roll</em></h2>
@@ -827,7 +886,29 @@
             <li>Accessible by design, not as an afterthought</li>
             <li>Roll history &amp; saved presets (premium)</li>
           </ul>
-          <span class="badge-coming" role="status">Coming to iOS &amp; Android</span>
+          <div class="app-buttons" role="group" aria-label="HearthRoll download options">
+            <a href="https://hearthroll.app" class="app-btn app-btn--web" target="_blank" rel="noopener noreferrer">
+              <span class="app-btn-icon" aria-hidden="true">🌐</span>
+              <span class="app-btn-text">
+                <span class="app-btn-label">Play on</span>
+                <span class="app-btn-name">Web</span>
+              </span>
+            </a>
+            <span class="app-btn app-btn--disabled" aria-disabled="true" title="iOS app coming soon">
+              <span class="app-btn-icon" aria-hidden="true"></span>
+              <span class="app-btn-text">
+                <span class="app-btn-label">Coming Soon</span>
+                <span class="app-btn-name">App Store</span>
+              </span>
+            </span>
+            <span class="app-btn app-btn--disabled" aria-disabled="true" title="Android app coming soon">
+              <span class="app-btn-icon" aria-hidden="true">🤖</span>
+              <span class="app-btn-text">
+                <span class="app-btn-label">Coming Soon</span>
+                <span class="app-btn-name">Google Play</span>
+              </span>
+            </span>
+          </div>
         </div>
         <div class="dice-display" aria-label="Dice types supported: D4, D6, D8, D10, D12, D20">
           <div class="dice-row">
